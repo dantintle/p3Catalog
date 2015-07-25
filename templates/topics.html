@@ -1,0 +1,52 @@
+<html>
+	<head>
+		
+	</head>
+	<body>
+		<h1>Topics</h1>
+
+		<div class='left'>
+		<a href='{{ url_for('topicListJSON') }}' target='_blank'>Topic JSON</a><br><br>
+
+		<a href = "{{ url_for('newTopic') }}">Create New Topic</a><br><br>
+
+		{%if 'username' not in session%}
+		<a href='{{url_for('showLogin')}}'>Click here to Log in.</a>
+		{% else %}
+		<a href='{{url_for('disconnect')}}'>Disconnect</a>
+		{% endif %}
+
+
+		<div class = 'flash'>
+		      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          
+        <ul class='flashMessage'>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+</div>
+
+</div>
+		{% if topics %}
+		<ul class='topicList'>
+		{% for topic in topics %}
+		<li><strong>{{ topic.name }}</strong><br>
+		<p>{{ topic.description }}</p><br>
+		<a href='{{ url_for('editTopic', topic_id = topic.id) }}'>Edit Topic</a><br>
+		<a href='{{ url_for('deleteTopic', topic_id = topic.id) }}'>Delete Topic</a><br>
+		<a href='{{ url_for('showSubTopics', topic_id = topic.id) }}'>Show Sub-topics</a><br><br>
+		</li>
+		
+		{% endfor %}
+		</ul>
+		{% else %}
+		<h2>Uh oh, there's no topics.</h2>
+		{% endif %}
+		
+	</body>
+</html>

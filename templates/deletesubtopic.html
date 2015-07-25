@@ -1,0 +1,27 @@
+<html>
+	<head>
+
+	</head>
+
+<body>
+
+<h1> Are you sure you want to delete {{s.name}}? </h1>
+
+<div>
+
+<form action='{{ url_for('deleteSubTopic', topic_id=s.topic_id, subtopic_id = s.id) }}' method = 'post'>
+
+<input type='submit', value = 'Delete'>
+
+
+
+
+</form>
+
+<a href = '{{ url_for('showSubTopics', topic_id = s.topic_id) }}'> Cancel </a>
+
+</div>
+
+</body>
+
+</html>

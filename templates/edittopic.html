@@ -1,0 +1,21 @@
+<html>
+	<head>
+		
+	</head>
+	<body>
+		<h1>Edit Topic</h1>
+		<div>
+		<form action='{{ url_for('editTopic', topic_id = i.id) }}' method="post">
+			<h2>Edit {{i.name}}?</h2>
+			<p>Name:</p>
+			<input type="text" size = '30' name='name' value='{{i.name}}'>
+			<p>Description:</p>
+			<input type="text" size="60" name = 'description' value='{{i.description}}'>
+			<input type="submit" value='Edit'>
+
+
+			<a href='{{ url_for('showTopics') }}'>Cancel</a> 
+		</form>
+		</div>
+	</body>
+</html>

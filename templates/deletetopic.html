@@ -1,0 +1,14 @@
+<html>
+	<head>
+		
+	</head>
+	<body>
+		<h1>Delete {{i.name}}?</h1>
+		<div>
+		<form action="{{ url_for('deleteTopic', topic_id = i.id) }}" method='post'>
+			<input type="submit" value = 'delete'>
+			<a href='{{ url_for('showTopics') }}'>Cancel</a> 
+		</form>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,78 @@
+<html>
+<head>
+	
+	</head>
+
+	
+	<body>
+	
+		
+		<h1>{{ topic.name }}</h1>
+
+
+		<div class='left'>
+		<a href='{{ url_for('showTopics') }}'>Back to Topics</a><br><br>
+
+		<a href='{{ url_for('showSubTopics', topic_id = topic.id) }}'>Back to Sub-Topics</a><br><br>
+
+		
+
+		{%if 'username' not in session%}
+		<a href='{{url_for('showLogin')}}'>Click here to Log in.</a>
+		{% else %}
+		<a href='{{url_for('disconnect')}}'>Disconnect</a>
+		{% endif %}
+
+
+
+
+		      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+       
+        {% endif %}
+        
+    {% endwith %}
+</div>
+
+ <div>
+		{% if items %}
+		{% for i in items %}
+
+<div>
+    	
+		<span><h2>{{i.name}}</h2></span>
+		<span><p>{{i.description}}</p></span>
+		<img src='{{i.picture}}' style="height:200px;width:auto;"><br>
+		<span><a href='{{i.link}}'>Check out {{i.name}} on the internetz!</a></span><br>
+
+
+
+
+
+	<a href='{{ url_for('subTopicJSON', topic_id=topic.id, subtopic_id=i.id) }}' target='_blank' class='menuLink'>{{i.name}} JSON</a><br><br>
+
+
+
+		{% endfor %}
+
+	</div>
+		
+		{% else %}
+		<h2>Uh oh, there's no {{topic.name}} in {{ subtopics.name }}</h2>
+
+		{% endif %}
+
+
+
+</div>
+
+
+	</body>
+
+</html>

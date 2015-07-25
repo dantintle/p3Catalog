@@ -1,0 +1,21 @@
+<html>
+	<head>
+		
+	</head>
+	<body>
+		<h1>Edit Subtopic</h1>
+		<div>
+		<form action='{{ url_for('editSubTopic', topic_id = s.topic_id, subtopic_id = s.id) }}' method='post'>
+			
+			<p>Name:</p><input type='text' name='name' value='{{s.name}}'><br>
+			<p>Description:</p><input type='text' name='description' value='{{s.description}}'><br>
+
+
+			<input type='submit' value='Edit'>
+
+			<a href='{{ url_for('showSubTopics', topic_id = s.topic_id) }}'>Cancel</a> 
+
+		</div>
+		</form>
+	</body>
+</html>

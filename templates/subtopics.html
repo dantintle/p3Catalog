@@ -1,0 +1,77 @@
+<html>
+<head>
+	
+	</head>
+
+	
+	<body>
+	
+		
+		<h1>{{ topic.name }}</h1>
+
+
+		<div class='left'>
+		<a href='{{ url_for('showTopics') }}'>Back to Topics</a><br><br>
+
+		<a href= '{{ url_for('subTopicListJSON', topic_id = topic.id) }}' target='_blank'>{{topic.name}}'s JSON</a><br><br>
+	
+
+	<a href = '{{ url_for('newSubTopic', topic_id = topic.id) }}'>Create New Item</a>
+
+	{%if 'username' not in session%}
+		<a href='{{url_for('showLogin')}}'>Click here to Log in.</a>
+		{% else %}
+		<a href='{{url_for('disconnect')}}'>Disconnect</a>
+		{% endif %}
+
+
+		      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+       
+        {% endif %}
+        
+    {% endwith %}
+</div>
+
+ <div>
+		{% if subtopics %}
+		{% for s in subtopics %}
+
+<div>
+    	
+		<span><h2>{{s.name}}</h2></span>
+		<span><p>{{s.description}}</p></span>
+
+
+
+
+	<a href='{{ url_for('editSubTopic', topic_id=topic.id, subtopic_id=s.id) }}'>Edit</a><br>
+	<a href='{{ url_for('deleteSubTopic', topic_id=topic.id, subtopic_id=s.id) }}'>Delete</a><br>
+	<a href='{{ url_for('showSubTopicItems', topic_id=topic.id, sub_topic_id=s.id) }}' class='menuLink'>{{s.name}} {{topic.name}}</a><br>
+	<a href='{{ url_for('subTopicJSON', topic_id=topic.id, subtopic_id=s.id) }}' target='_blank'>{{s.name}} JSON</a><br><br>
+
+
+
+		{% endfor %}
+
+	</div>
+		
+		{% else %}
+		<h2>Uh oh, there's no subtopics for {{ topic.name }}</h2>
+
+		{% endif %}
+
+
+
+</div>
+
+
+	</body>
+
+</html>

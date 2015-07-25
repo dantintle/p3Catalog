@@ -1,0 +1,45 @@
+<html>
+	<head>
+		
+	</head>
+	<body>
+		<h1>Topics</h1>
+
+		{%if 'username' not in session%}
+		<a href='{{url_for('showLogin')}}'>Click here to Log in.</a>
+		{% else %}
+		<a href='{{url_for('disconnect')}}'>Disconnect</a>
+		{% endif %}
+
+
+		<div class = 'flash'>
+		      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          
+        <ul class='flashMessage'>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+</div>
+
+</div>
+		{% if topics %}
+		<ul class='topicList'>
+		{% for topic in topics %}
+		<li><strong>{{ topic.name }}</strong><br>
+		
+		<a href='{{ url_for('showSubTopics', topic_id = topic.id) }}'>Show Topics</a><br><br>
+		</li>
+		
+		{% endfor %}
+		</ul>
+		{% else %}
+		<h2>Uh oh, you need to log-in to create, edit and delete topics. Please log in.</h2>
+		{% endif %}
+		
+	</body>
+</html>

@@ -1,0 +1,22 @@
+<html>
+	<head>
+	
+	</head>
+	<body>
+		<h1>Create New Topic</h1>
+		<div>
+		<form action='{{ url_for('newTopic') }}' method='post'>
+
+			<h3>Name:</h3>
+			<input type="text" size = '30' name='name'>
+			<p>Description:</p>
+			<input type="text" size='60' name='description'>
+			<input type="submit" value='Create'>
+
+
+			<a href='{{ url_for('showTopics') }}'>Cancel</a> 
+		</form>
+
+		</div>
+	</body>
+</html>
