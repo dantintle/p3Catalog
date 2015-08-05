@@ -16,6 +16,7 @@ import json
 from flask import make_response
 import requests
 
+
 app = Flask(__name__)
 
 CLIENT_ID = json.loads(open('client_secrets.json', 'r').read())['web']['client_id']

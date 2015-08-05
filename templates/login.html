@@ -1,9 +1,19 @@
 <html>
 	<head>
+
+	<link href='http://fonts.googleapis.com/css?family=Alegreya:400,700|Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
+	
+	<link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='styles.css') }}">
+
+
 		<script src='//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js'></script>
 		<script src='//apis.google.com/js/platform.js?onload=start'></script>
 	</head>
 	<body>
+		<div class="titleRow"><h1 class='title'>Login Here</h1></div>
+
+		
+
 		<div id='signinButton'>
 			<span class='g-signin'
 				data-scope='openid email'
@@ -16,8 +26,7 @@
 			</span>
 		</div>
 
-		<div id="result"></div>
-
+		<div class ='pane' id="result"></div>
 
 
 
@@ -99,15 +108,18 @@
 
 	</script>
 
-
-	
 		<button>
 		<fb:login-button scope='public_profile,email' onlogin='sendTokenToServer();'>
 		<a href="javascript:sendTokenToServer()">Login with Facebook</a>
 
 		</fb:login-button>
 		</button>
+	<div class="leftNav">
+		<div class="leftLinks">
+			<a href='{{ url_for('showTopics') }}'>Back to Topics</a><br><br>
 
-
+		</div>
+	</div>
+	
 	</body>
 </html>

@@ -1,10 +1,14 @@
 <html>
 	<head>
+
+	<link href='http://fonts.googleapis.com/css?family=Alegreya:400,700|Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
+
+	<link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='styles.css') }}">
 		
 	</head>
 	<body>
-		<h1>Edit Subtopic</h1>
-		<div>
+		<div class="titleRow"><h1 class='title'>Edit Subtopic</h1></div>
+		<div class='pane'>
 		<form action='{{ url_for('editSubTopic', topic_id = s.topic_id, subtopic_id = s.id) }}' method='post'>
 			
 			<p>Name:</p><input type='text' name='name' value='{{s.name}}'><br>

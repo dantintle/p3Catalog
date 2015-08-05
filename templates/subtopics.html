@@ -1,5 +1,9 @@
 <html>
 <head>
+
+<link href='http://fonts.googleapis.com/css?family=Alegreya:400,700|Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
+
+<link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='styles.css') }}">
 	
 	</head>
 
@@ -7,28 +11,11 @@
 	<body>
 	
 		
-		<h1>{{ topic.name }}</h1>
-
-
-		<div class='left'>
-		<a href='{{ url_for('showTopics') }}'>Back to Topics</a><br><br>
-
-		<a href= '{{ url_for('subTopicListJSON', topic_id = topic.id) }}' target='_blank'>{{topic.name}}'s JSON</a><br><br>
-	
-
-	<a href = '{{ url_for('newSubTopic', topic_id = topic.id) }}'>Create New Item</a>
-
-	{%if 'username' not in session%}
-		<a href='{{url_for('showLogin')}}'>Click here to Log in.</a>
-		{% else %}
-		<a href='{{url_for('disconnect')}}'>Disconnect</a>
-		{% endif %}
-
-
-		      {% with messages = get_flashed_messages() %}
+		<div class="titleRow"><h1 class="title">{{ topic.name }}</h1>
+	{% with messages = get_flashed_messages() %}
       {% if messages %}
           
-        <ul>
+        <ul class='flash'>
         {% for message in messages %}
             <li> <strong> {{ message }} </strong> </li>
         {% endfor %}
@@ -37,9 +24,29 @@
         {% endif %}
         
     {% endwith %}
+		</div>
+
+
+		<div class='leftNav'>
+		<div class="leftLinks">
+		<a href='{{ url_for('showTopics') }}'>Back to Topics</a><br><br>
+
+		<a href= '{{ url_for('subTopicListJSON', topic_id = topic.id) }}' target='_blank'>{{topic.name}}'s JSON</a><br><br>
+	
+
+	<a href = '{{ url_for('newSubTopic', topic_id = topic.id) }}'>Create New Item</a><br><br>
+
+	{%if 'username' not in session%}
+		<a href='{{url_for('showLogin')}}'>Click here to Log in.</a>
+		{% else %}
+		<a href='{{url_for('disconnect')}}'>Disconnect</a>
+		{% endif %}
+
 </div>
 
- <div>
+</div>
+
+ <div class='pane'>
 		{% if subtopics %}
 		{% for s in subtopics %}
 

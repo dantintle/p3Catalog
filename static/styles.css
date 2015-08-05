@@ -1,0 +1,77 @@
+body{
+	background-color: #5A7AD1;
+	margin:0;
+	padding:0;
+}
+
+h1, h2, h3, h4, h5{
+	font-family: 'Alegreya', serif;
+}
+
+li, p, a {
+	font-family: 'Source Sans Pro', sans-serif;
+	color:white;
+}
+
+p{
+	color:#c9c5c5;
+}
+
+
+li{
+	list-style: none;
+}
+
+
+
+.titleRow{
+	width:100%;
+	position:absolute;
+	height:75px;
+	background-color:rgb(209,177,90);
+}
+
+
+.title{
+	color:black;
+	z-index:100;
+	left:210px;
+	position:absolute;
+}
+
+.flash{
+	float:right;
+}
+
+
+.leftNav{
+	width:200px;
+	background-color:rgba(90,209,118,.75);
+	position:fixed;
+	height:100%;
+}
+
+.leftLinks{
+	top:105px;
+	position:fixed;
+	left:15px;
+}
+
+
+.pane{
+	left:220px;
+	position:relative;
+	top:90px;
+}
+
+
+
+@media (min-width: 950px) {
+	a{
+		text-decoration: none;
+	}
+
+	a:hover{
+		text-decoration: underline;
+	}
+}

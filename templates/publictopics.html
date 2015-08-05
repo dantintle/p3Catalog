@@ -1,18 +1,16 @@
 <html>
 	<head>
+
+	<link href='http://fonts.googleapis.com/css?family=Alegreya:400,700|Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
+
+	<link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='styles.css') }}">
 		
 	</head>
 	<body>
-		<h1>Topics</h1>
+		
+		<div class="titleRow"><h1 class="title">Topics</h1>
 
-		{%if 'username' not in session%}
-		<a href='{{url_for('showLogin')}}'>Click here to Log in.</a>
-		{% else %}
-		<a href='{{url_for('disconnect')}}'>Disconnect</a>
-		{% endif %}
-
-
-		<div class = 'flash'>
+				<div class = 'flash'>
 		      {% with messages = get_flashed_messages() %}
       {% if messages %}
           
@@ -26,7 +24,22 @@
 
 </div>
 
-</div>
+
+		</div>
+
+
+		<div class="leftNav">
+		<div class="leftLinks">
+		{%if 'username' not in session%}
+		<a href='{{url_for('showLogin')}}'>Click here to Log in.</a>
+		{% else %}
+		<a href='{{url_for('disconnect')}}'>Disconnect</a>
+		{% endif %}
+
+
+
+
+
 		{% if topics %}
 		<ul class='topicList'>
 		{% for topic in topics %}
@@ -40,6 +53,10 @@
 		{% else %}
 		<h2>Uh oh, you need to log-in to create, edit and delete topics. Please log in.</h2>
 		{% endif %}
+
+		</div>
+
+		</div>
 		
 	</body>
 </html>
