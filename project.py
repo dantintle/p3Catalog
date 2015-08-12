@@ -281,8 +281,6 @@ def editTopic(topic_id):
 	editedTopic = session.query(Topic).filter_by(id=topic_id).one()
 	if 'username' not in login_session:
 		return redirect('/login')
-	if editedTopic.user_id != login_session['user_id']:
-		return "<script>function myFunction() {alert('You are not authorized to edit this topic. Please create your own topic in order to edit.');}</script><body onload='myFunction()'>"
 	if request.method == 'POST':
 		if request.form['name']:
 			editedTopic.name = request.form['name']
@@ -296,11 +294,9 @@ def editTopic(topic_id):
 
 @app.route('/topic/<int:topic_id>/delete', methods=['GET', 'POST'])
 def deleteTopic(topic_id):
-	topicToDelete = session.query(Topic).filter_by(id=topic_id).one()
 	if 'username' not in login_session:
 		return redirect('/login')
-	if topicToDelete.user_id != login_session['user_id']:
-		return "<script>function myFunction() {alert('You are not authorized to delete this topic. Please create your own restaurant in order to topic.');}</script><body onload='myFunction()''>"
+	topicToDelete = session.query(Topic).filter_by(id=topic_id).one()
 	if request.method == 'POST':
 		session.delete(topicToDelete)
 		session.commit()
@@ -337,11 +333,9 @@ def newSubTopic(topic_id):
 
 @app.route('/topic/<int:topic_id>/subtopic/<int:subtopic_id>/edit', methods=['GET', 'POST'])
 def editSubTopic(topic_id, subtopic_id):
-	editedSubTopic = session.query(SubTopic).filter_by(id=subtopic_id).one()
 	if 'username' not in login_session:
 		return redirect('/login')
-	if editedSubTopic.user_id != login_session['user_id']:
-		return "<script>function myFunction() {alert('You are not authorized to edit this sub topic. Please create your own sub topic in order to edit.');}</script><body onload='myFunction()''>"
+	editedSubTopic = session.query(SubTopic).filter_by(id=subtopic_id).one()
 	if request.method == 'POST':
 		if request.form['name']:
 			editedSubTopic.name = request.form['name']
@@ -355,11 +349,9 @@ def editSubTopic(topic_id, subtopic_id):
 
 @app.route('/topic/<int:topic_id>/subtopic/<int:subtopic_id>/delete', methods=['GET', 'POST'])
 def deleteSubTopic(topic_id, subtopic_id):
-	deletedSubTopic = session.query(SubTopic).filter_by(id=subtopic_id).one()
 	if 'username' not in login_session:
 		return redirect('/login')
-	if deletedSubTopic.user_id != login_session['user_id']:
-		return "<script>function myFunction() {alert('You are not authorized to delete this sub topic. Please create your own sub topic in order to delete.');}</script><body onload='myFunction()''>"
+	deletedSubTopic = session.query(SubTopic).filter_by(id=subtopic_id).one()
 	if request.method =='POST':
 		session.delete(deletedSubTopic)
 		session.commit()
@@ -394,11 +386,9 @@ def newSubTopicItems(topic_id, sub_topic_id):
 
 @app.route('/topic/<int:topic_id>/subtopic/<int:subtopic_id>/item/<int:subtopicitem_id>/edit', methods=['GET', 'POST'])
 def editSubTopicItem(topic_id, subtopic_id, subtopicitem_id):
-	editedSubTopicItem = session.query(SubTopicItem).filter_by(id = subtopicitem_id).one()
 	if 'username' not in login_session:
 		return redirect('/login')
-	if editedSubTopicItem.user_id != login_session['user_id']:
-		return "<script>function myFunction() {alert('You are not authorized to edit this sub topic. Please create your own sub topic in order to edit.');}</script><body onload='myFunction()''>"
+	editedSubTopicItem = session.query(SubTopicItem).filter_by(id = subtopicitem_id).one()
 	if request.method == 'POST':
 		if request.form['name']:
 			editedSubTopicItem.name = request.form['name']
@@ -415,11 +405,9 @@ def editSubTopicItem(topic_id, subtopic_id, subtopicitem_id):
 
 @app.route('/topic/<int:topic_id>/subtopic/<int:subtopic_id>/item/<int:subtopicitem_id>/delete', methods=['GET', 'POST'])
 def deleteSubTopicItem(topic_id, subtopic_id, subtopicitem_id):
-	deletedSubTopicItem = session.query(SubTopicItem).filter_by(id=subtopicitem_id).one()
 	if 'username' not in login_session:
 		return redirect('/login')
-	if deletedSubTopicItem.user_id != login_session['user_id']:
-		return "<script>function myFunction() {alert('You are not authorized to delete this sub topic. Please create your own sub topic in order to delete.');}</script><body onload='myFunction()''>"
+	deletedSubTopicItem = session.query(SubTopicItem).filter_by(id=subtopicitem_id).one()
 	if request.method =='POST':
 		session.delete(deletedSubTopicItem)
 		session.commit()
