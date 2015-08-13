@@ -278,9 +278,11 @@ def newTopic():
 
 @app.route('/topic/<int:topic_id>/edit', methods=['GET', 'POST'])
 def editTopic(topic_id):
-	editedTopic = session.query(Topic).filter_by(id=topic_id).one()
 	if 'username' not in login_session:
 		return redirect('/login')
+	editedTopic = session.query(Topic).filter_by(id=topic_id).one()
+	if editedTopic.user_id != login_session['user_id']:
+		return "<script>function myFunction() {alert('You are not authorized to edit this topic. Please create your own topic in order to edit.');}</script><body onload='myFunction()'>"
 	if request.method == 'POST':
 		if request.form['name']:
 			editedTopic.name = request.form['name']
@@ -297,6 +299,8 @@ def deleteTopic(topic_id):
 	if 'username' not in login_session:
 		return redirect('/login')
 	topicToDelete = session.query(Topic).filter_by(id=topic_id).one()
+	if topicToDelete.user_id != login_session['user_id']:
+		return "<script>function myFunction() {alert('You are not authorized to delete this topic. Please create your own restaurant in order to topic.');}</script><body onload='myFunction()''>"
 	if request.method == 'POST':
 		session.delete(topicToDelete)
 		session.commit()
@@ -313,7 +317,7 @@ def showSubTopics(topic_id):
 	topic = session.query(Topic).filter_by(id=topic_id).one()
 	creator = getUserInfo(topic.user_id)
 	subtopics = session.query(SubTopic).filter_by(topic_id = topic_id).all()
-	if 'username' not in login_session or creator.id != login_session['user_id']:
+	if 'username' not in login_session:
 		return render_template('publicsubtopics.html', topic=topic, subtopics=subtopics, creator=creator)
 	else:
 		return render_template('subtopics.html', topic = topic, subtopics = subtopics, creator=creator)
@@ -336,6 +340,8 @@ def editSubTopic(topic_id, subtopic_id):
 	if 'username' not in login_session:
 		return redirect('/login')
 	editedSubTopic = session.query(SubTopic).filter_by(id=subtopic_id).one()
+	if editedSubTopic.user_id != login_session['user_id']:
+		return "<script>function myFunction() {alert('You are not authorized to edit this sub topic. Please create your own sub topic in order to edit.');}</script><body onload='myFunction()''>"
 	if request.method == 'POST':
 		if request.form['name']:
 			editedSubTopic.name = request.form['name']
@@ -352,6 +358,8 @@ def deleteSubTopic(topic_id, subtopic_id):
 	if 'username' not in login_session:
 		return redirect('/login')
 	deletedSubTopic = session.query(SubTopic).filter_by(id=subtopic_id).one()
+	if deletedSubTopic.user_id != login_session['user_id']:
+		return "<script>function myFunction() {alert('You are not authorized to delete this sub topic. Please create your own sub topic in order to delete.');}</script><body onload='myFunction()''>"
 	if request.method =='POST':
 		session.delete(deletedSubTopic)
 		session.commit()
@@ -366,7 +374,7 @@ def showSubTopicItems(topic_id, sub_topic_id):
 	subtopics =session.query(SubTopic).filter_by(id=sub_topic_id).one()
 	creator = getUserInfo(topic.user_id)
 	subtopicitems = session.query(SubTopicItem).filter_by(topic_id = topic_id, sub_topic_id = sub_topic_id).all()
-	if 'username' not in login_session or creator.id != login_session['user_id']:
+	if 'username' not in login_session:
 		return render_template('publicsubtopicitems.html', topic=topic, subtopics=subtopics, items=subtopicitems, creator=creator)
 	else:
 		return render_template('subtopicitems.html', topic = topic, subtopics = subtopics, items=subtopicitems, creator=creator)
@@ -389,6 +397,8 @@ def editSubTopicItem(topic_id, subtopic_id, subtopicitem_id):
 	if 'username' not in login_session:
 		return redirect('/login')
 	editedSubTopicItem = session.query(SubTopicItem).filter_by(id = subtopicitem_id).one()
+	if editedSubTopicItem.user_id != login_session['user_id']:
+		return "<script>function myFunction() {alert('You are not authorized to edit this sub topic. Please create your own sub topic in order to edit.');}</script><body onload='myFunction()''>"
 	if request.method == 'POST':
 		if request.form['name']:
 			editedSubTopicItem.name = request.form['name']
@@ -408,6 +418,8 @@ def deleteSubTopicItem(topic_id, subtopic_id, subtopicitem_id):
 	if 'username' not in login_session:
 		return redirect('/login')
 	deletedSubTopicItem = session.query(SubTopicItem).filter_by(id=subtopicitem_id).one()
+	if deletedSubTopicItem.user_id != login_session['user_id']:
+		return "<script>function myFunction() {alert('You are not authorized to delete this sub topic. Please create your own sub topic in order to delete.');}</script><body onload='myFunction()''>"
 	if request.method =='POST':
 		session.delete(deletedSubTopicItem)
 		session.commit()

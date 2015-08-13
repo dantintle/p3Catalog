@@ -34,7 +34,7 @@
 		<a href= '{{ url_for('subTopicListJSON', topic_id = topic.id) }}' target='_blank'>{{topic.name}}'s JSON</a><br><br>
 	
 
-	<a href = '{{ url_for('newSubTopic', topic_id = topic.id) }}'>Create New Item</a><br><br>
+	<a href = '{{ url_for('newSubTopic', topic_id = topic.id) }}'>Create New Subtopic</a><br><br>
 
 	{%if 'username' not in session%}
 		<a href='{{url_for('showLogin')}}'>Click here to Log in.</a>

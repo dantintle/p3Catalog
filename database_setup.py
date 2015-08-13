@@ -40,7 +40,7 @@ class SubTopic(Base):
 	id = Column(Integer, primary_key = True)
 	description = Column(String(250))
 	topic_id = Column(Integer, ForeignKey('topic.id'))
-	topic = relationship(Topic)
+	topic = relationship(Topic, cascade="all, delete")
 	user_id = Column(Integer, ForeignKey('user.id'))
 	user = relationship(User)
 
@@ -62,9 +62,9 @@ class SubTopicItem(Base):
 	picture = Column(String(300))
 	link = Column(String(300))
 	topic_id = Column(Integer, ForeignKey('topic.id'))
-	topic = relationship(Topic)
+	topic = relationship(Topic, cascade="all, delete")
 	sub_topic_id = Column(Integer, ForeignKey('sub_topic.id'))
-	sub_topic = relationship(SubTopic)
+	sub_topic = relationship(SubTopic, cascade="all, delete")
 	user_id = Column(Integer, ForeignKey('user.id'))
 	user = relationship(User)
 
